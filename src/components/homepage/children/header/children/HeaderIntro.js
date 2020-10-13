@@ -4,11 +4,11 @@ import { Col, Row } from "reactstrap";
 const HeaderIntro = () => {
   return (
     <Row className=" justify-content-center align-items-center">
-      <Col xs={10} md={5} className="py-3">
+      <Col xs={10} md={5} className="py-3 header-intro">
         <h1 style={{ fontSize: "2.5rem" }} className="font-weight-bold">
           Let’s Grow Your <br /> Brand To The <br /> Next Level
         </h1>
-        <p>
+        <p className="py-2">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum ab sit
           neque iusto praesentium id maxime ipsam nam libero nobis.
         </p>

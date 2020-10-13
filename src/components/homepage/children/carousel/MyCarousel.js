@@ -55,11 +55,9 @@ const MyCarousel = (props) => {
           style={{ backgroundColor: "#111430" }}
         >
           <img
-            className="m-auto py-5"
+            className="m-auto py-md-5 px-3 px-md-0"
             src={item.src}
             alt={item.altText}
-            width="468"
-            height="336"
           />
         </div>
         <CarouselCaption

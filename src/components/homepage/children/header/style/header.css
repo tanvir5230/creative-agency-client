@@ -28,6 +28,9 @@ header:after {
   .big-companies {
     margin-top: 10vh;
   }
+  .header-intro {
+    text-align: center;
+  }
 }
 @media (min-width: 576px) {
   .big-companies {

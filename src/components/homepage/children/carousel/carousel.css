@@ -9,3 +9,15 @@
 .carousel-indicators li.active {
   background-color: #fbd062;
 }
+
+.carousel-item img {
+  width: 400px;
+  height: 336px;
+}
+@media (max-width: 576px) {
+  .carousel-item img {
+    width: 350px;
+    height: 300px;
+    padding-bottom: 40px;
+  }
+}
