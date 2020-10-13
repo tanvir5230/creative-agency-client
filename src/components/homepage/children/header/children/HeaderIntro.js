@@ -5,7 +5,7 @@ const HeaderIntro = () => {
   return (
     <Row className=" justify-content-center align-items-center">
       <Col xs={10} md={5} className="py-3">
-        <h1 className="font-weight-bold">
+        <h1 style={{ fontSize: "2.5rem" }} className="font-weight-bold">
           Let’s Grow Your <br /> Brand To The <br /> Next Level
         </h1>
         <p>
