@@ -4,8 +4,8 @@ import { Col, Row } from "reactstrap";
 const HeaderIntro = () => {
   return (
     <Row className=" justify-content-center align-items-center">
-      <Col xs={10} md={5} className="py-3 header-intro">
-        <h1 style={{ fontSize: "2.5rem" }} className="font-weight-bold">
+      <Col xs={10} md={6} lg={5} className="py-3 header-intro">
+        <h1 style={{ fontSize: "1.8rem" }} className="font-weight-bold">
           Let’s Grow Your <br /> Brand To The <br /> Next Level
         </h1>
         <p className="py-2">
@@ -24,11 +24,11 @@ const HeaderIntro = () => {
           Hire Us
         </button>
       </Col>
-      <Col md={7} className="d-none d-md-block">
+      <Col md={6} lg={7} className="d-none d-md-block">
         <img
           src={require("../../../../../resources/images/logos/Frame.png")}
           alt=""
-          className="img-fluid p-lg-5"
+          className="img-fluid p-lg-5 p-md-3"
         />
       </Col>
     </Row>

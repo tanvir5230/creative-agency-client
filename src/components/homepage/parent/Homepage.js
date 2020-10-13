@@ -9,9 +9,35 @@ const Homepage = () => {
   return (
     <>
       <Header />
-      <Services />
-      <MyCarousel />
-      <Feedback />
+
+      <section
+        style={{
+          marginTop: "100px",
+          padding: "50px 0",
+        }}
+      >
+        <Services />
+      </section>
+
+      <section
+        style={{
+          backgroundColor: "#111430",
+          marginTop: "100px",
+          padding: "50px 0",
+        }}
+      >
+        <MyCarousel />
+      </section>
+
+      <section
+        style={{
+          marginTop: "100px",
+          padding: "50px 0",
+        }}
+      >
+        <Feedback />
+      </section>
+
       <Footer />
     </>
   );

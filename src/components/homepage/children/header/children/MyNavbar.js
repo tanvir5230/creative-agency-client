@@ -8,6 +8,7 @@ import {
   NavItem,
   NavLink,
 } from "reactstrap";
+import "../style/header.css";
 
 const MyNavbar = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,7 +27,7 @@ const MyNavbar = (props) => {
           />
         </NavbarBrand>
         <div className="d-md-none ml-auto mr-2">
-          <button className="btn btn-dark">login</button>
+          <button className="login btn btn-dark">login</button>
           {/* <span>tanvir</span> */}
         </div>
         <NavbarToggler onClick={toggle} />
@@ -51,7 +52,7 @@ const MyNavbar = (props) => {
           </Nav>
           <div className="d-none d-md-block">
             <button
-              className="btn text-white"
+              className="btn login text-white"
               style={{
                 width: "134px",
                 height: "47px",

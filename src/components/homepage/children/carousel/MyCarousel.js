@@ -55,7 +55,7 @@ const MyCarousel = (props) => {
           style={{ backgroundColor: "#111430" }}
         >
           <img
-            className="m-auto py-md-5 px-3 px-md-0"
+            className="m-auto py-md-3 px-3 px-md-0"
             src={item.src}
             alt={item.altText}
           />
@@ -70,32 +70,25 @@ const MyCarousel = (props) => {
 
   return (
     <>
-      <h1
-        style={{
-          backgroundColor: "#111430",
-          position: "relative",
-          top: "50px",
-          zIndex: 1,
-        }}
-        className="text-center text-white py-5 font-weight-bold"
-      >
+      <h1 className="text-center text-white font-weight-bold pb-5">
         Here are some of <span style={{ color: "#7AB259" }}>our works</span>
       </h1>
       <Carousel
         enableTouch={true}
         slide={true}
         autoPlay={true}
-        interval={1500}
+        interval={2000}
         activeIndex={activeIndex}
         next={next}
         previous={previous}
       >
+        {slides}
         <CarouselIndicators
           items={items}
           activeIndex={activeIndex}
           onClickHandler={goToIndex}
+          className="mt-5 position-static"
         />
-        {slides}
       </Carousel>
     </>
   );

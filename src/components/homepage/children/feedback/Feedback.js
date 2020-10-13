@@ -3,8 +3,8 @@ import { Col, Container, Row } from "reactstrap";
 
 const Feedback = () => {
   return (
-    <Container className="mt-5 pt-5">
-      <h3 className="text-center mb-5">
+    <Container>
+      <h3 className="text-center pb-3">
         Clients{" "}
         <span className="font-weight-bold" style={{ color: "#7ab259" }}>
           Feedback

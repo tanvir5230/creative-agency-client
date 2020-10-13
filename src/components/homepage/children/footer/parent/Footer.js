@@ -4,7 +4,13 @@ import Copyright from "../children/Copyright";
 
 const Footer = () => {
   return (
-    <footer className="mt-5" style={{ backgroundColor: "#fbd062" }}>
+    <footer
+      style={{
+        marginTop: "100px",
+        padding: "50px 0",
+        backgroundColor: "#fbd062",
+      }}
+    >
       <Contact></Contact>
       <Copyright />
     </footer>

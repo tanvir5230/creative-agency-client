@@ -4,8 +4,8 @@ import "./services.css";
 
 const Services = () => {
   return (
-    <Container className="mt-5">
-      <h3 className="text-center font-weight-bold py-5">
+    <Container>
+      <h3 className="text-center font-weight-bold pb-5">
         Provide awesome <span style={{ color: "#7AB259" }}>services</span>
       </h3>
       <Row className="justify-content-center align-items-center">

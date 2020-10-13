@@ -5,7 +5,7 @@ const Contact = () => {
   return (
     <Container>
       <Row className="justify-content-center py-5">
-        <Col xs={10} md={6}>
+        <Col xs={11} md={6}>
           <h1
             className="font-weight-bold"
             style={{ fontSize: "1.5rem", color: "#2D2D2D" }}
@@ -19,7 +19,7 @@ const Contact = () => {
           </p>
         </Col>
 
-        <Col xs={10} md={6}>
+        <Col xs={11} md={6}>
           <form>
             <input
               type="email"
