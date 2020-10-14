@@ -77,7 +77,7 @@ const MyCarousel = (props) => {
         enableTouch={true}
         slide={true}
         autoPlay={true}
-        interval={2000}
+        interval={2500}
         activeIndex={activeIndex}
         next={next}
         previous={previous}

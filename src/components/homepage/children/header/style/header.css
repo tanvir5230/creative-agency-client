@@ -24,7 +24,19 @@ header:after {
 .big-companies img {
   margin: 10px 25px;
 }
+
+.navbar-after-scroll {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  transition: all 0.4s;
+}
+
 @media (max-width: 576px) {
+  .navbar {
+    text-align: right;
+  }
   .big-companies {
     margin-top: 10vh;
   }

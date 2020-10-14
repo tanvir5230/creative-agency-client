@@ -4,7 +4,7 @@ import { Col, Container, Row } from "reactstrap";
 const Contact = () => {
   return (
     <Container>
-      <Row className="justify-content-center py-5">
+      <Row className="justify-content-center py-5" id="contact">
         <Col xs={11} md={6}>
           <h1
             className="font-weight-bold"

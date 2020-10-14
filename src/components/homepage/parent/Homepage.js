@@ -15,6 +15,7 @@ const Homepage = () => {
           marginTop: "100px",
           padding: "50px 0",
         }}
+        id="services"
       >
         <Services />
       </section>
@@ -25,6 +26,7 @@ const Homepage = () => {
           marginTop: "100px",
           padding: "50px 0",
         }}
+        id="portfolio"
       >
         <MyCarousel />
       </section>
