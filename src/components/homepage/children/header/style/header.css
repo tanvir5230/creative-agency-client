@@ -46,12 +46,12 @@ header:after {
   .header-intro {
     font-size: "1.8rem";
   }
-}
-@media (max-width: 450px) {
   .login {
-    width: auto;
+    width: auto !important;
     margin: 0;
   }
+}
+@media (max-width: 450px) {
   .navbar-brand img {
     width: 120px;
     height: 40px;

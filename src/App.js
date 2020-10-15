@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import "font-awesome/css/font-awesome.min.css";
@@ -9,28 +9,67 @@ import Admin from "./components/admin/Admin";
 import { PrivateAdmin } from "./components/admin/PrivateAdmin";
 import { PrivateClient } from "./components/client/PrivateClient";
 import Client from "./components/client/Client";
+import { createContext } from "react";
 
+import * as firebase from "firebase/app";
+import "firebase/auth";
+
+import { firebaseConfig } from "./firebaseConfig";
+import { useEffect } from "react";
+
+firebase.initializeApp(firebaseConfig);
+
+export const userContext = createContext();
 function App() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged(function (loggedInUser) {
+      if (loggedInUser) {
+        localStorage.setItem("user", JSON.stringify(loggedInUser));
+        setUser(loggedInUser);
+      } else {
+        localStorage.removeItem("user");
+        setUser(null);
+      }
+    });
+  }, [user]);
+
+  const handleLogout = () => {
+    firebase.auth().signOut();
+  };
+
+  const url = "http://localhost:5000";
+
   return (
     <>
-      <BrowserRouter>
-        <Switch>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <PrivateAdmin path="/admin">
-            <Admin />
-          </PrivateAdmin>
+      <userContext.Provider
+        value={{
+          user: user,
+          setUser: setUser,
+          handleLogout: handleLogout,
+          url: url,
+        }}
+      >
+        <BrowserRouter>
+          <Switch>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <PrivateAdmin path="/admin">
+              <Admin />
+            </PrivateAdmin>
 
-          <PrivateClient path="/client">
-            <Client />
-          </PrivateClient>
+            <PrivateClient path="/client">
+              <Client />
+            </PrivateClient>
 
-          <Route path="/">
-            <Homepage />
-          </Route>
-        </Switch>
-      </BrowserRouter>
+            <Route path="/">
+              <Homepage />
+            </Route>
+          </Switch>
+        </BrowserRouter>
+      </userContext.Provider>
     </>
   );
 }

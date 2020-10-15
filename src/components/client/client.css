@@ -1,0 +1,23 @@
+input#price {
+  width: 40%;
+}
+input[type="file"] {
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+  opacity: 0;
+  width: 60%;
+}
+
+.custom-file-style {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #deffed;
+  cursor: pointer;
+  border: 1px solid #009444;
+  box-sizing: border-box;
+  border-radius: 5px;
+}

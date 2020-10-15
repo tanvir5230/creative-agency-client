@@ -1,14 +1,51 @@
 import React from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
+import * as firebase from "firebase/app";
+import { useContext } from "react";
+import { userContext } from "../../App";
 
 const Login = () => {
+  const { setUser, url } = useContext(userContext);
   const history = useHistory();
   let location = useLocation();
   let { from } = location.state || { from: { pathname: "/" } };
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  if (user) {
+    history.replace(from);
+  }
 
   const handleLogin = () => {
-    history.replace(from);
+    const provider = new firebase.auth.GoogleAuthProvider();
+    firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then(function (result) {
+        const loggedInUser = result.user;
+        setUser(loggedInUser);
+        return loggedInUser;
+      })
+      .then((userData) => {
+        fetch(url + "/checkUser", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email: userData.email }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            const { userType } = data;
+            localStorage.setItem("userType", userType);
+            if (userType === "admin") {
+              history.push("/admin");
+            } else {
+              userData.role = "client";
+              history.replace(from);
+            }
+          });
+      });
   };
   return (
     <Container
