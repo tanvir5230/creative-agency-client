@@ -42,7 +42,7 @@ const Services = () => {
       <h3 className="text-center font-weight-bold pb-5">
         Provide awesome <span style={{ color: "#7AB259" }}>services</span>
       </h3>
-      <Row className="justify-content-center align-items-center">
+      <Row className="justify-content-center align-items-baseline">
         {services === null && <Loader />}
         {services && services === "error" && (
           <p className="text-success text-center">Couldn't load data.</p>
@@ -57,10 +57,10 @@ const Services = () => {
                 }
                 onMouseLeave={() => set({ xys: [0, 0, 1] })}
                 style={{ transform: props.xys.interpolate(trans) }}
-                className="card border-0 col-11 col-md-4"
+                className="col-11 col-md-4 mt-md-0"
               >
                 <Link className="nav-link text-dark" to="/client">
-                  <div className="d-flex flex-column align-items-center text-center px-2">
+                  <div className="d-flex flex-column align-items-center text-center px-2 mt-3 mt-md-0 card border-0">
                     <img
                       src={item.image}
                       alt=""

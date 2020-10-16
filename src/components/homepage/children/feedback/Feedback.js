@@ -26,7 +26,7 @@ const Feedback = () => {
           Feedback
         </span>
       </h3>
-      <Row className="flex-wrap justify-content-center align-items-baseline">
+      <Row className="flex-wrap justify-content-center justify-content-md-start align-items-baseline">
         {reviews === "empty" && (
           <p className="text-center text-warning">could'nt load reviews.</p>
         )}
