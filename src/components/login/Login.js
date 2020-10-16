@@ -10,7 +10,7 @@ const Login = () => {
   const history = useHistory();
   let location = useLocation();
   let { from } = location.state || { from: { pathname: "/" } };
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = localStorage.getItem("user");
 
   if (user) {
     history.replace(from);
@@ -41,8 +41,12 @@ const Login = () => {
             if (userType === "admin") {
               history.push("/admin");
             } else {
-              userData.role = "client";
-              history.replace(from);
+              if (from.pathname === "/admin") {
+                console.log("you don't have access to this section.");
+                history.push("/");
+              } else {
+                history.replace(from);
+              }
             }
           });
       });

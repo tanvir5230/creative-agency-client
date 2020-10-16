@@ -26,10 +26,15 @@ function App() {
   useEffect(() => {
     firebase.auth().onAuthStateChanged(function (loggedInUser) {
       if (loggedInUser) {
-        localStorage.setItem("user", JSON.stringify(loggedInUser));
+        const userInfo = {
+          name: loggedInUser.displayName,
+          photoUrl: loggedInUser.photoURL,
+          email: loggedInUser.email,
+        };
+        localStorage.setItem("user", JSON.stringify(userInfo));
         setUser(loggedInUser);
       } else {
-        localStorage.removeItem("user");
+        localStorage.clear();
         setUser(null);
       }
     });

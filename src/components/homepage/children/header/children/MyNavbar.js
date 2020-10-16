@@ -17,9 +17,9 @@ const MyNavbar = () => {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const { handleLogout } = useContext(userContext);
-  const user = JSON.parse(localStorage.getItem("user"));
   const toggle = () => setIsOpen(!isOpen);
 
+  const user = JSON.parse(localStorage.getItem("user"));
   const userType = localStorage.getItem("userType");
 
   return (
@@ -65,9 +65,7 @@ const MyNavbar = () => {
           )}
           {user && (
             <>
-              <span className="text-success">
-                {user.displayName.slice(0, 6)}
-              </span>
+              <span className="text-success">{user.name.slice(0, 6)}</span>
               <button className="btn btn-sm" onClick={handleLogout}>
                 <i className="fa fa-sign-out"></i>
               </button>
@@ -149,9 +147,7 @@ const MyNavbar = () => {
             )}
             {user && (
               <>
-                <span className="text-success">
-                  {user.displayName.slice(0, 6)}
-                </span>
+                <span className="text-success">{user.name.slice(0, 6)}</span>
                 <button className="btn btn-sm" onClick={handleLogout}>
                   <i className="fa fa-sign-out"></i>
                 </button>
