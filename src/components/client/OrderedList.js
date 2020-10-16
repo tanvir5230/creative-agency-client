@@ -37,7 +37,7 @@ export const OrderedList = ({ setTitle }) => {
                   </p>
                 )}
                 {item.status === "done" && (
-                  <p className="p-2 text-danger d-flex justify-content-center">
+                  <p className="p-2 text-success d-flex justify-content-center">
                     <i className="fa fa-check-circle-o fa-2x"></i>
                     <span className="ml-3">{item.status}</span>
                   </p>
