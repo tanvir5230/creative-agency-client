@@ -8,6 +8,15 @@ import { Col, Container, Row } from "reactstrap";
 import { userContext } from "../../../../App";
 import Loader from "../../../loader/Loader";
 import "./services.css";
+import { useSpring, animated } from "react-spring";
+
+const calc = (x, y) => [
+  -(y - window.innerHeight / 2) / 20,
+  (x - window.innerWidth / 2) / 20,
+  1.1,
+];
+const trans = (x, y, s) =>
+  `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`;
 
 const Services = () => {
   const { url } = useContext(userContext);
@@ -21,6 +30,13 @@ const Services = () => {
       }
     });
   }, [url]);
+
+  // react spring
+  const [props, set] = useSpring(() => ({
+    xys: [0, 0, 1],
+    config: { mass: 5, tension: 350, friction: 40 },
+  }));
+
   return (
     <Container>
       <h3 className="text-center font-weight-bold pb-5">
@@ -35,7 +51,14 @@ const Services = () => {
           services !== "error" &&
           services.map((item) => {
             return (
-              <Col xs={10} md={4} className="service-hover p-3">
+              <animated.div
+                onMouseMove={({ clientX: x, clientY: y }) =>
+                  set({ xys: calc(x, y) })
+                }
+                onMouseLeave={() => set({ xys: [0, 0, 1] })}
+                style={{ transform: props.xys.interpolate(trans) }}
+                className="card col-11 col-md-4"
+              >
                 <Link className="nav-link text-dark" to="/client">
                   <div className="d-flex flex-column align-items-center text-center px-2">
                     <img
@@ -51,7 +74,7 @@ const Services = () => {
                     </p>
                   </div>
                 </Link>
-              </Col>
+              </animated.div>
             );
           })}
       </Row>

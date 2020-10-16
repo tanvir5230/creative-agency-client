@@ -1,5 +1,9 @@
-.service-hover:hover {
-  box-shadow: 2px 2px 40px #ddd, -2px -2px 40px #ddd;
-  border-radius: 5px;
-  transition: all 0.4s;
+.card {
+  background: white;
+  box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.3);
+  transition: box-shadow 0.5s;
+  will-change: transform;
+}
+.card:hover {
+  box-shadow: 0px 30px 100px -10px rgba(0, 0, 0, 0.4);
 }
