@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useContext } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Col, Container, Row } from "reactstrap";
+import { Container, Row } from "reactstrap";
 import { userContext } from "../../../../App";
 import Loader from "../../../loader/Loader";
 import "./services.css";
@@ -57,7 +57,7 @@ const Services = () => {
                 }
                 onMouseLeave={() => set({ xys: [0, 0, 1] })}
                 style={{ transform: props.xys.interpolate(trans) }}
-                className="card col-11 col-md-4"
+                className="card border-0 col-11 col-md-4"
               >
                 <Link className="nav-link text-dark" to="/client">
                   <div className="d-flex flex-column align-items-center text-center px-2">
