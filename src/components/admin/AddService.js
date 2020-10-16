@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { Col } from "reactstrap";
+import { userContext } from "../../App";
 
 const AddService = ({ setTitle }) => {
+  const { url } = useContext(userContext);
   const history = useHistory();
   const { register } = useForm();
   const [selectFile] = useState(null);
@@ -30,7 +32,7 @@ const AddService = ({ setTitle }) => {
         // onSubmit={handleSubmit(onSubmit)}
         method="POST"
         enctype="multipart/form-data"
-        action={`http://localhost:5000/addservice`}
+        action={url + `/addservice`}
       >
         <input
           className="form-control mt-3"
