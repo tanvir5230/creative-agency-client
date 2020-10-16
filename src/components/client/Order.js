@@ -5,8 +5,11 @@ import { useForm } from "react-hook-form";
 import "./client.css";
 import axios from "axios";
 import { useState } from "react";
+import { useContext } from "react";
+import { userContext } from "../../App";
 
 export const Order = ({ setTitle }) => {
+  const { url } = useContext(userContext);
   const history = useHistory();
   const newTitle = history.location.pathname.split("/")[2];
   const user = JSON.parse(localStorage.getItem("user"));
@@ -19,7 +22,7 @@ export const Order = ({ setTitle }) => {
     formData.projectFile = file;
     formData.uid = uid;
     axios
-      .post("http://localhost:5000/order", formData)
+      .post(url + "/order", formData)
       .then((res) => res.data)
       .then((data) => {
         if (data) {

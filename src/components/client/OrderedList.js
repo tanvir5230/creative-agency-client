@@ -1,17 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Axios from "axios";
 import Loader from "../loader/Loader";
 import { Col } from "reactstrap";
+import { userContext } from "../../App";
 export const OrderedList = ({ setTitle }) => {
+  const { url } = useContext(userContext);
   const history = useHistory();
   const newTitle = history.location.pathname.split("/")[2];
   const { uid } = JSON.parse(localStorage.getItem("user"));
   const [list, setList] = useState(null);
   useEffect(() => {
     setTitle(newTitle);
-    Axios.get("http://localhost:5000/orderedlist?id=" + uid).then((res) => {
+    Axios.get(url + "/orderedlist?id=" + uid).then((res) => {
       setList(res.data);
     });
   }, [newTitle, setTitle, uid]);

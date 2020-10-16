@@ -35,7 +35,7 @@ export const Reviews = ({ setTitle }) => {
   const newTitle = history.location.pathname.split("/")[2];
   useEffect(() => {
     setTitle(newTitle);
-  });
+  }, [newTitle, setTitle]);
   return (
     <Container fluid>
       <Row className="justify-content-center justify-content-md-start">

@@ -1,19 +1,24 @@
 import Axios from "axios";
 import React, { useEffect } from "react";
+import { useContext } from "react";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Col, Table } from "reactstrap";
+import { userContext } from "../../App";
+import Loader from "../loader/Loader";
 
 export const ProjectList = ({ setTitle }) => {
+  const { url } = useContext(userContext);
   const history = useHistory();
+
   const handleSelect = (id, e) => {
     const selected = e.target.value;
-    Axios.patch("http://localhost:5000/projectStatus", {
+    Axios.patch(url + "/projectStatus", {
       status: selected,
       id: id,
     }).then((res) => {
       if (res.data) {
-        alert("operation successful.");
+        history.push("/admin");
       } else {
         alert("operation couldn't be done.");
       }
@@ -26,14 +31,14 @@ export const ProjectList = ({ setTitle }) => {
   const newTitle = history.location.pathname.split("/")[2];
   useEffect(() => {
     setTitle(newTitle);
-    Axios.get("http://localhost:5000/projectlist")
+    Axios.get(url + "/projectlist")
       .then((res) => {
         setProjectLists(res.data);
       })
       .catch((err) => {
         alert("couldn't load data.");
       });
-  }, [newTitle, setTitle]);
+  }, [newTitle, setTitle, url]);
   return (
     <Col xs={12} className="mt-3 bg-white table-responsive-sm">
       <Table responsive borderless className="text-center p-0">
@@ -69,12 +74,12 @@ export const ProjectList = ({ setTitle }) => {
                   </td>
                   <td>
                     <select
-                      className={`form-control-sm ${
+                      className={`border-0 ${
                         project.status === "on Going"
-                          ? "bg-warning"
+                          ? "text-warning"
                           : project.status === "done"
-                          ? "bg-success text-white"
-                          : "bg-danger text-white"
+                          ? "text-success text-white"
+                          : "text-danger text-white"
                       }`}
                       name="status"
                       onInput={(e) => handleSelect(project._id, e)}
@@ -83,13 +88,16 @@ export const ProjectList = ({ setTitle }) => {
                       <option value={project.status} hidden selected>
                         {project.status}
                       </option>
-                      <option value="pending" className="bg-danger text-white">
+                      <option
+                        value="pending"
+                        className="text-danger text-white"
+                      >
                         pending
                       </option>
-                      <option value="on Going" className="bg-warning">
+                      <option value="on Going" className="text-warning">
                         on Going
                       </option>
-                      <option value="done" className="bg-success text-white">
+                      <option value="done" className="text-success text-white">
                         done
                       </option>
                     </select>
@@ -105,6 +113,7 @@ export const ProjectList = ({ setTitle }) => {
               no order takes place.
             </p>
           )}
+          {projectLists === null && <Loader />}
         </tbody>
       </Table>
     </Col>

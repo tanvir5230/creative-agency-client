@@ -11,6 +11,7 @@ import {
 import { Col, Container, Row } from "reactstrap";
 import Sidebar from "../templates/Sidebar";
 import Topbar from "../templates/Topbar";
+import AddService from "./AddService";
 import MakeAdmin from "./MakeAdmin";
 import { ProjectList } from "./ProjectList";
 
@@ -55,15 +56,6 @@ const Admin = () => {
       </Row>
     </Container>
   );
-};
-
-const AddService = ({ setTitle }) => {
-  const history = useHistory();
-  const newTitle = history.location.pathname.split("/")[2];
-  useEffect(() => {
-    setTitle(newTitle);
-  });
-  return <p>add service</p>;
 };
 
 export default Admin;

@@ -45,7 +45,6 @@ function App() {
     firebase.auth().signOut();
   };
 
-  // const url = "http://localhost:5000";
   const url = "https://creative-agency-t.herokuapp.com";
 
   return (

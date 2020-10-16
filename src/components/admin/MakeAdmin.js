@@ -1,13 +1,14 @@
 import React, { useEffect, useRef } from "react";
-import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Axios from "axios";
 import { Col } from "reactstrap";
-import { event } from "jquery";
+import { useContext } from "react";
+import { userContext } from "../../App";
 
 const MakeAdmin = ({ setTitle }) => {
   const history = useHistory();
   const inputRef = useRef();
+  const { url } = useContext(userContext);
 
   const newTitle = history.location.pathname.split("/")[2];
   useEffect(() => {
@@ -17,7 +18,7 @@ const MakeAdmin = ({ setTitle }) => {
     e.preventDefault();
     const email = inputRef.current.value;
     if (email.length > 0) {
-      Axios.post("http://localhost:5000/makeadmin", {
+      Axios.post(url + "/makeadmin", {
         email: inputRef.current.value,
       }).then((res) => {
         const data = res.data;

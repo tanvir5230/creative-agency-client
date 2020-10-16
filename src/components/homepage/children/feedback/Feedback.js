@@ -17,7 +17,7 @@ const Feedback = () => {
       .catch((err) => {
         setReviews("empty");
       });
-  });
+  }, [url]);
   return (
     <Container>
       <h3 className="text-center pb-3">
