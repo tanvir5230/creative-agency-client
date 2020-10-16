@@ -16,7 +16,7 @@ export const OrderedList = ({ setTitle }) => {
     Axios.get(url + "/orderedlist?id=" + uid).then((res) => {
       setList(res.data);
     });
-  }, [newTitle, setTitle, uid]);
+  }, [newTitle, setTitle, uid, url]);
   return (
     <div>
       {list === null && <Loader />}

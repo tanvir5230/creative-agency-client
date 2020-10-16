@@ -1,29 +1,25 @@
-import axios from "axios";
 import React, { useEffect } from "react";
-import { useContext } from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { Col } from "reactstrap";
-import { userContext } from "../../App";
 
 const AddService = ({ setTitle }) => {
   const history = useHistory();
-  const { url } = useContext(userContext);
-  const { register, handleSubmit } = useForm();
-  const [file, selectFile] = useState(null);
-  const onSubmit = (data) => {
-    let myData = new FormData();
-    myData.append("file", file);
-    axios
-      .post(url + "/addservice", myData, {
-        // receive two parameter endpoint url ,form data
-      })
-      .then((res) => {
-        // then print response status
-        console.log(res.statusText);
-      });
-  };
+  const { register } = useForm();
+  const [selectFile] = useState(null);
+  // const onSubmit = (data) => {
+  //   let myData = new FormData();
+  //   myData.append("file", file);
+  //   axios
+  //     .post(url + "/addservice", myData, {
+  //       // receive two parameter endpoint url ,form data
+  //     })
+  //     .then((res) => {
+  //       // then print response status
+  //       console.log(res.statusText);
+  //     });
+  // };
   const newTitle = history.location.pathname.split("/")[2];
   useEffect(() => {
     setTitle(newTitle);
@@ -32,15 +28,16 @@ const AddService = ({ setTitle }) => {
     <Col xs={12} md={7} lg={5}>
       <form
         // onSubmit={handleSubmit(onSubmit)}
-        method="post"
+        method="POST"
         enctype="multipart/form-data"
-        action={`${url}/addservice`}
+        action={`http://localhost:5000/addservice`}
       >
         <input
           className="form-control mt-3"
           name="title"
           ref={register}
           placeholder="Service title"
+          require
         />
         <textarea
           className="form-control mt-3"
@@ -48,6 +45,7 @@ const AddService = ({ setTitle }) => {
           ref={register}
           placeholder="service Description"
           rows="3"
+          required
         ></textarea>
 
         <div className="position-relative my-3">
@@ -56,6 +54,7 @@ const AddService = ({ setTitle }) => {
             name="iconFile"
             className="form-control-file"
             onInput={(e) => selectFile(e.target.files[0])}
+            required
           />
           <span className="custom-file-style d-flex justify-content-center align-items-center">
             <i className="fa fa-upload mr-3"></i>

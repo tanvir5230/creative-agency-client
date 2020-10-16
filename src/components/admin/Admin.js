@@ -1,13 +1,6 @@
 import React from "react";
-import { useEffect } from "react";
 import { useState } from "react";
-import {
-  Redirect,
-  Route,
-  Switch,
-  useHistory,
-  useRouteMatch,
-} from "react-router-dom";
+import { Redirect, Route, Switch, useRouteMatch } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 import Sidebar from "../templates/Sidebar";
 import Topbar from "../templates/Topbar";
