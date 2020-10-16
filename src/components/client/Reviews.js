@@ -2,11 +2,33 @@ import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Col, Container, Row } from "reactstrap";
+import { useContext } from "react";
+import { userContext } from "../../App";
 export const Reviews = ({ setTitle }) => {
+  const { url } = useContext(userContext);
+
   const { register, handleSubmit, errors } = useForm();
+  const user = JSON.parse(localStorage.getItem("user"));
+  const { photoUrl } = user;
+
   const onSubmit = (data, e) => {
-    console.log(data);
-    e.target.reset();
+    data.image = photoUrl;
+    fetch(url + "/review", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data) {
+          alert("review added.");
+          e.target.reset();
+        } else {
+          alert("couldn't add review.try again.");
+        }
+      });
   };
 
   const history = useHistory();

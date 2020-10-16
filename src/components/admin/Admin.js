@@ -11,6 +11,8 @@ import {
 import { Col, Container, Row } from "reactstrap";
 import Sidebar from "../templates/Sidebar";
 import Topbar from "../templates/Topbar";
+import MakeAdmin from "./MakeAdmin";
+import { ProjectList } from "./ProjectList";
 
 const Admin = () => {
   const { url, path } = useRouteMatch();
@@ -37,7 +39,7 @@ const Admin = () => {
         >
           <Switch>
             <Route path={`${path}/service list`}>
-              <Servicelist setTitle={setTitle} />
+              <ProjectList setTitle={setTitle} />
             </Route>
 
             <Route path={`${path}/add service`}>
@@ -62,24 +64,6 @@ const AddService = ({ setTitle }) => {
     setTitle(newTitle);
   });
   return <p>add service</p>;
-};
-
-const Servicelist = ({ setTitle }) => {
-  const history = useHistory();
-  const newTitle = history.location.pathname.split("/")[2];
-  useEffect(() => {
-    setTitle(newTitle);
-  });
-  return <p>Service list</p>;
-};
-
-const MakeAdmin = ({ setTitle }) => {
-  const history = useHistory();
-  const newTitle = history.location.pathname.split("/")[2];
-  useEffect(() => {
-    setTitle(newTitle);
-  });
-  return <p>make admin</p>;
 };
 
 export default Admin;

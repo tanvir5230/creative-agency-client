@@ -3,26 +3,35 @@ import { useHistory } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 import { useForm } from "react-hook-form";
 import "./client.css";
-// import { useState } from "react";
+import axios from "axios";
+import { useState } from "react";
 
 export const Order = ({ setTitle }) => {
   const history = useHistory();
   const newTitle = history.location.pathname.split("/")[2];
-
+  const user = JSON.parse(localStorage.getItem("user"));
+  const { uid } = user;
   // form
   const { register, handleSubmit, errors } = useForm();
+  const [file, selectFile] = useState(null);
   const onSubmit = (data, e) => {
     let formData = data;
-    formData.projectFile = data.projectFile[0];
-    console.log(formData);
-    e.target.reset();
+    formData.projectFile = file;
+    formData.uid = uid;
+    axios
+      .post("http://localhost:5000/order", formData)
+      .then((res) => res.data)
+      .then((data) => {
+        if (data) {
+          e.target.reset();
+        } else {
+          alert("try again.");
+        }
+      });
   };
-  // const [services,serServices]=useState(null) fetch services
-
-  //demo
   const services = [
     "graphics design",
-    "web developmen",
+    "web development",
     "mobile app development",
   ];
 
@@ -32,8 +41,12 @@ export const Order = ({ setTitle }) => {
   return (
     <Container fluid>
       <Row className="justify-content-center justify-content-md-start">
-        <Col xs={11} md={6} lg={5}>
-          <form onSubmit={handleSubmit(onSubmit)} style={{ height: "400px" }}>
+        <Col xs={12} md={6} lg={5}>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            encType="multipart/form-data"
+            style={{ height: "400px" }}
+          >
             <input
               name="name"
               className="form-control mt-3"
@@ -91,8 +104,7 @@ export const Order = ({ setTitle }) => {
                   type="file"
                   name="projectFile"
                   className="form-control-file"
-                  ref={register}
-                  required
+                  onChange={(e) => selectFile(e.target.files[0])}
                 />
                 <span className="custom-file-style d-flex justify-content-center align-items-center">
                   <i className="fa fa-upload mr-3"></i>

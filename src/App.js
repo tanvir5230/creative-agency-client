@@ -30,6 +30,7 @@ function App() {
           name: loggedInUser.displayName,
           photoUrl: loggedInUser.photoURL,
           email: loggedInUser.email,
+          uid: loggedInUser.uid,
         };
         localStorage.setItem("user", JSON.stringify(userInfo));
         setUser(loggedInUser);
