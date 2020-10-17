@@ -62,7 +62,7 @@ const Services = () => {
                 <Link className="nav-link text-dark" to="/client">
                   <div className="d-flex flex-column align-items-center text-center px-2 mt-3 mt-md-0 card border-0">
                     <img
-                      src={item.image}
+                      src={`${url}/services/${item.image}`}
                       alt=""
                       width="74"
                       height="74"

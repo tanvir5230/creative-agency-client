@@ -3,12 +3,14 @@ import { useHistory } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 import { useForm } from "react-hook-form";
 import "./client.css";
-import axios from "axios";
 import { useState } from "react";
 import { useContext } from "react";
 import { userContext } from "../../App";
+import Axios from "axios";
+import Loader from "../loader/Loader";
 
 export const Order = ({ setTitle }) => {
+  const [services, setServices] = useState(null);
   const { url } = useContext(userContext);
   const history = useHistory();
   const newTitle = history.location.pathname.split("/")[2];
@@ -21,8 +23,7 @@ export const Order = ({ setTitle }) => {
     let formData = data;
     formData.projectFile = file;
     formData.uid = uid;
-    axios
-      .post(url + "/order", formData)
+    Axios.post(url + "/order", formData)
       .then((res) => res.data)
       .then((data) => {
         if (data) {
@@ -32,15 +33,13 @@ export const Order = ({ setTitle }) => {
         }
       });
   };
-  const services = [
-    "graphics design",
-    "web development",
-    "mobile app development",
-  ];
 
   useEffect(() => {
     setTitle(newTitle);
-  });
+    Axios.get(url + "/services")
+      .then((res) => setServices(res.data))
+      .catch((err) => alert("couldn't load data."));
+  }, [setTitle, url, newTitle]);
   return (
     <Container fluid>
       <Row className="justify-content-center justify-content-md-start">
@@ -76,13 +75,15 @@ export const Order = ({ setTitle }) => {
               ref={register}
               required
             >
-              {services.map((service) => {
-                return (
-                  <option key={service} value={service}>
-                    {service}
-                  </option>
-                );
-              })}
+              {services === null && <Loader />}
+              {services &&
+                services.map((service) => {
+                  return (
+                    <option key={service.title} value={service.title}>
+                      {service.title}
+                    </option>
+                  );
+                })}
             </select>
 
             <textarea
